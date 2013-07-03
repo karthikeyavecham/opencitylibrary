@@ -57,6 +57,7 @@ $trans["adminMaterialTypes"]       = "\$text = 'Material Types';";
 $trans["adminCollections"]         = "\$text = 'Collections';";
 $trans["adminThemes"]              = "\$text = 'Themes';";
 $trans["adminTranslation"]         = "\$text = 'Translation';";
+$trans["adminBulkUpload"]           = "\$text = 'Bulk Book Upload';";
 
 #****************************************************************************
 #*  Translation text for page cataloging.php

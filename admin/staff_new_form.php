@@ -15,6 +15,9 @@
   require_once("../shared/logincheck.php");
   require_once("../shared/get_form_vars.php");
   require_once("../classes/Localize.php");
+  require_once("../classes/LocationQuery.php");
+  require_once("../classes/Location.php");
+  
   $loc = new Localize(OBIB_LOCALE,$tab);
   
   require_once("../shared/header.php");
@@ -44,6 +47,25 @@
       <?php printInputText("first_name",30,30,$postVars,$pageErrors); ?>
     </td>
   </tr>
+
+    <tr>
+    <td nowrap="true" class="primary">
+      <?php echo $loc->getText("adminStaff_edit_formEmail"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php printInputText("email",30,30,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  
+    <tr>
+    <td nowrap="true" class="primary">
+      <?php echo $loc->getText("adminStaff_edit_formContactnumber"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php printInputText("contact_number",20,20,$postVars,$pageErrors); ?>
+    </td>
+  </tr>  
+  
   <tr>
     <td nowrap="true" class="primary">
       <?php echo $loc->getText("adminStaff_edit_formLogin"); ?>

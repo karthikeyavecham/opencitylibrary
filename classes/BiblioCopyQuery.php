@@ -133,6 +133,7 @@ class BiblioCopyQuery extends Query {
     $copy->setCopyDesc($array["copy_desc"]);
     $copy->setBarcodeNmbr($array["barcode_nmbr"]);
     $copy->setStatusCd($array["status_cd"]);
+    $copy->setLocationid($array["locationid"]);
     $copy->setStatusBeginDt($array["status_begin_dt"]);
     $copy->setDueBackDt($array["due_back_dt"]);
     $copy->setDaysLate($array["days_late"]);
@@ -236,6 +237,13 @@ class BiblioCopyQuery extends Query {
     } else {
       $sql .= $this->mkSQL("%Q,", $copy->getMbrid());
     }
+
+    if ($copy->getLocationid() == "") {
+    	$sql .= "null,";
+    } else {
+    	$sql .= $this->mkSQL("%Q,", $copy->getLocationid());
+    }
+    
     $sql .= " 0)"; //Default renewal count to zero
     $ret = $this->_query($sql, $this->_loc->getText("biblioCopyQueryErr3"));
     if (!$ret) {
@@ -257,9 +265,9 @@ class BiblioCopyQuery extends Query {
       return false;
     }
     $sql = $this->mkSQL("update biblio_copy set "
-                        . "copy_desc=%Q, barcode_nmbr=%Q "
-                        . "where bibid=%N and copyid=%N",
-                        $copy->getCopyDesc(), $copy->getBarcodeNmbr(),
+                        . "copy_desc=%Q, barcode_nmbr=%Q , locationid=%Q "
+                        . "where bibid=%N and copyid=%N ",
+                        $copy->getCopyDesc(), $copy->getBarcodeNmbr(), $copy->getLocationid(),
                         $copy->getBibid(), $copy->getCopyid());
     $ret = $this->_query($sql, $this->_loc->getText("biblioCopyQueryErr5"));
     if (!$ret) {

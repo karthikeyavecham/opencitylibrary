@@ -85,6 +85,7 @@ $trans["biblioEditSuccess"]        = "\$text = 'Bibliography successfully update
 $trans["biblioCopyNewFormLabel"]   = "\$text = 'Add New Copy';";
 $trans["biblioCopyNewBarcode"]     = "\$text = 'Barcode Number';";
 $trans["biblioCopyNewDesc"]        = "\$text = 'Description';";
+$trans["biblioCopyLocation"]	   = "\$text = 'Location';";
 $trans["biblioCopyNewAuto"]        = "\$text = 'Autogenerate';";
 $trans["biblioCopyNewValidBarco"]  = "\$text = 'Validate for printing';";
 $trans["biblioCopyEditFormLabel"]  = "\$text = 'Edit Copy';";

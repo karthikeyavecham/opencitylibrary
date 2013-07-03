@@ -6,6 +6,8 @@ create table %prfx%staff (
   ,last_change_userid integer not null
   ,username varchar(20) not null
   ,pwd char(32) not null
+  ,email varchar(50) not null
+  ,contact_number varchar(15) not null
   ,last_name varchar(30) not null
   ,first_name varchar(30) null
   ,suspended_flg char(1) not null

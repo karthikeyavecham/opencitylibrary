@@ -9,7 +9,6 @@
   $tab = "circulation";
   $nav = "search";
   require_once("../shared/logincheck.php");
-
   require_once("../classes/Location.php");
   require_once("../classes/LocationQuery.php");
   require_once("../functions/searchFuncs.php");
@@ -145,7 +144,7 @@ function changePage(page)
       <?php echo H($lotQ->getCurrentRowNmbr());?>.
     </td>
     <td nowrap="true" class="primary">
-      <a href="../circ/loc_view.php?locationid=<?php echo HURL($location->getLocationid());?>&amp;reset=Y"><?php echo H($location->getAddressOne());?>, <?php echo H($location->getAddressTwo());?></a><br>
+      <a href="../circ/loc_view.php?locationid=<?php echo HURL($location->getLocationid());?>&amp;reset=Y"><?php echo H($location->getAddressOne());?></a><br>
       <?php
         if ($location->getAddressTwo() != "")
           echo str_replace("\n", "<br />", H($location->getAddressTwo())).'<br />';

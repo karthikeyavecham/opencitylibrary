@@ -53,6 +53,7 @@ $trans["biblioViewTble2Col2"]      = "\$text = 'Description';";
 $trans["biblioViewTble2Col3"]      = "\$text = 'Status';";
 $trans["biblioViewTble2Col4"]      = "\$text = 'Status Dt';";
 $trans["biblioViewTble2Col5"]      = "\$text = 'Due Back';";
+$trans["biblioViewTble2Col6"]      = "\$text = 'Location';";
 $trans["biblioViewTble2ColFunc"]   = "\$text = 'Function';";
 $trans["biblioViewTble2Coldel"]    = "\$text = 'del';";
 $trans["biblioViewTble2Coledit"]   = "\$text = 'edit';";

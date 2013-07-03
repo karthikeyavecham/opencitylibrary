@@ -62,6 +62,8 @@
   $_POST["copyDesc"] = $copy->getCopyDesc();
   $copy->setBarcodeNmbr($_POST["barcodeNmbr"]);
   $_POST["barcodeNmbr"] = $copy->getBarcodeNmbr();
+  $copy->setLocationid($_POST["location"]);
+  $_POST["location"] = $copy->getLocationid();
   $updateStatus = FALSE;
   # Just ignore invalid status settings.
   if (!in_array($_POST["statusCd"], $disallowed)

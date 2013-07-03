@@ -64,6 +64,8 @@
   $_POST["copyDesc"] = $copy->getCopyDesc();
   $copy->setBarcodeNmbr($_POST["barcodeNmbr"]);
   $_POST["barcodeNmbr"] = $copy->getBarcodeNmbr();
+  $copy->setLocationid($_POST["location"]);
+  $_POST["location"] = $copy->getCopyDesc();
   
   $dmQ = new DmQuery();
   $dmQ->connect();

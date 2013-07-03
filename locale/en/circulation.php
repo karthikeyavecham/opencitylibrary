@@ -211,6 +211,7 @@ $trans["mbrDelConfirmMsg"]        = "\$text = 'Are you sure you want to delete t
 $trans["mbrDelSuccess"]           = "\$text='Member, %name%, has been deleted.';";
 $trans["mbrDelReturn"]            = "\$text='return to Member Search';";
 
+
 #****************************************************************************
 #*  Translation text for page mbr_history.php
 #****************************************************************************
@@ -274,8 +275,8 @@ $trans["locNewLibraryLocation"]   = "\$text='New Library Location';";
 $trans["locNewForm"]              = "\$text='Add New';";
 $trans["locEditForm"]             = "\$text='Edit';";
 $trans["locFldsHeader"]           = "\$text='Location:';";
-$trans["locFldsAddr1"]            = "\$text='Address:';";
-$trans["locFldsAddr2"]            = "\$text='Location (Panjagutta, Uppal, ..etc):';";
+$trans["locFldsAddr2"]            = "\$text='Address:';";
+$trans["locFldsAddr1"]            = "\$text='Location (Panjagutta, Uppal, ..etc):';";
 $trans["locFldsCity"]             = "\$text='City:';";
 $trans["locFldsState"]         	  = "\$text='State:';";
 $trans["locFldsPincode"]          = "\$text='Pincode:';";
@@ -293,6 +294,7 @@ $trans["locindexSearch"]          = "\$text='Search location by place';";
 $trans["locindexplace"]           = "\$text='Address:';";
 $trans["locsearchCity"]        	  = "\$text='City:';";
 $trans["locsearchState"]          = "\$text='State:';";
+$trans["locstaffid"]          	  = "\$text='StaffId:';";
 $trans["locsearchPincode"]        = "\$text='Pincode:';";
 $trans["locFldsLatitude"]         = "\$text='Latitude:';";
 $trans["locFldsLongitude"]        = "\$text='Longitude:';";
@@ -312,11 +314,30 @@ $trans["locEditSuccess"]          = "\$text='Location has been successfully upda
 #*  Translation text for page loc_view.php
 #****************************************************************************
 $trans["locViewHead1"]            = "\$text='Location Information:';";
-$trans["locViewAddrOne"]          = "\$text='Address Line One:';";
-$trans["locViewAddrTwo"]          = "\$text='Address Line Two:';";
+$trans["locViewAddrOne"]          = "\$text='Location:';";
+$trans["locViewAddrTwo"]          = "\$text='Address:';";
 $trans["locViewCity"]             = "\$text='City:';";
 $trans["locViewState"]         	  = "\$text='State:';";
 $trans["locViewPincode"]          = "\$text='Pincode:';";
 $trans["locViewDel"]              = "\$text='del';";
+$trans["locStaff"]                = "\$text='Staff:;";
+$trans["locViewLatitude"]         = "\$text='Latitude:';";
+$trans["locViewLongitude"]        = "\$text='Longitude:';";
+
+#****************************************************************************
+#*  Translation text for page loc_del_confirm.php
+#****************************************************************************
+$trans["locDelConfirmReturn"]     = "\$text = 'return to Location information';";
+$trans["locDelConfirmMsg"]        = "\$text = 'Are you sure you want to delete the Location, %name%? ';";
+$trans["locDelConfirmWarn"]       = "\$text = 'Location, %name%, has books associated with it, Assign the books to another location before deletiing this location';";
+
+
+#****************************************************************************
+#*  Translation text for page loc_del.php
+#****************************************************************************
+$trans["locDelSuccess"]           = "\$text='Location, %name%, has been deleted.';";
+$trans["locDelReturn"]            = "\$text='return to Location Search';";
+
+
 
 ?>

@@ -18,6 +18,8 @@
   require_once('../classes/DmQuery.php');
   require_once("../functions/errorFuncs.php");
   require_once("../classes/Localize.php");
+  require_once("../classes/Location.php");
+  require_once("../classes/LocationQuery.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
 
   $dmQ = new DmQuery();
@@ -50,11 +52,13 @@
       $copyQ->close();
       displayErrorPage($copyQ);
     }
+    
     $postVars["bibid"] = $bibid;
     $postVars["copyid"] = $copyid;
     $postVars["barcodeNmbr"] = $copy->getBarcodeNmbr();
     $postVars["copyDesc"] = $copy->getCopyDesc();
     $postVars["statusCd"] = $copy->getStatusCd();
+    $postVars["locationid"] = $copy->getLocationid();
     foreach ($customFields as $name => $title) {
       $postVars["custom_".$name] = $copy->getCustom($name);
     }
@@ -100,12 +104,36 @@
       <?php echo $loc->getText("biblioCopyNewValidBarco"); ?>
     </td>
   </tr>
+  
   <tr>
     <td nowrap="true" class="primary" valign="top">
       <?php echo $loc->getText("biblioCopyNewDesc"); ?>:
     </td>
     <td valign="top" class="primary">
       <?php printInputText("copyDesc",40,40,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  
+  <tr>
+  <td nowrap="true" class="primary" valign="top">
+    <?php echo $loc->getText("biblioCopyLocation"); ?>:
+  </td>
+  <td valign="top" class="primary">
+<?php 
+  $locQ = new LocationQuery();
+  $locQ->connect();
+  $locations = $locQ->getLocations();
+  $locQ->close();
+  echo "<select name=\"location\"";
+  echo ">\n";
+  foreach ($locations as $location) {
+    echo "<option value=\"".H($location->getLocationid())."\"";
+    if ($copy->getLocationid()==$location->getLocationid()) 
+      echo " selected";
+    echo ">".H($location->getAddressOne()." - ". $location->getAddressTwo())."</option>\n";
+  }
+  echo "</select>\n";
+?>
     </td>
   </tr>
 <?php
@@ -116,6 +144,7 @@
     echo'</td></tr>';
   }
 ?>
+
   <tr>
     <td nowrap="true" class="primary" valign="top">
       <?php echo $loc->getText("biblioCopyEditFormStatus"); ?>:

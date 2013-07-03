@@ -15,6 +15,9 @@
   require_once("../classes/LocationQuery.php");
   require_once("../shared/get_form_vars.php");
   require_once("../classes/Localize.php");
+  require_once("../classes/Staff.php");
+  require_once("../classes/StaffQuery.php");
+  
   $loc = new Localize(OBIB_LOCALE,$tab);
 
   #****************************************************************************
@@ -25,6 +28,8 @@
     exit();
   }
 
+  
+  
   #****************************************************************************
   #*  Retrieving get location id
   #****************************************************************************
@@ -43,6 +48,11 @@
   $lot = $lotQ->get($locationid);
   $lotQ->close();
 
+  
+  $staffQ=new StaffQuery();
+  $staffQ->connect();
+  $staff = $staffQ->getFirstNameLastName($lot->getStaffid());
+  $staffQ->close();
   #**************************************************************************
   #*  Show location information
   #**************************************************************************
@@ -62,7 +72,7 @@
       <?php echo $loc->getText("locViewAddrOne"); ?>
     </td>
     <td valign="top" class="primary">
-      <?php echo H($lot->getAddressOne());?>, <?php echo H($lot->getAddressOne());?>
+      <?php echo H($lot->getAddressOne());?>
     </td>
   </tr>
   <tr>
@@ -70,7 +80,7 @@
       <?php echo $loc->getText("locViewAddrTwo"); ?>
     </td>
     <td valign="top" class="primary">
-      <?php echo H($lot->getAddressTwo());?>, <?php echo H($lot->getAddressTwo());?>
+      <?php echo H($lot->getAddressTwo());?>
     </td>
   </tr>
   
@@ -96,6 +106,32 @@
     </td>
     <td valign="top" class="primary">
       <?php echo H($lot->getPincode());?>
+    </td>
+  </tr>
+  
+    <tr>
+    <td class="primary" valign="top">
+      <?php echo $loc->getText("locStaff"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php echo H($staff);?>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="primary" valign="top">
+      <?php echo $loc->getText("locViewLatitude"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php echo H($lot->getLatitude());?>
+    </td>
+  </tr>
+  <tr>
+    <td class="primary" valign="top">
+      <?php echo $loc->getText("locViewLongitude"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php echo H($lot->getLongitude());?>
     </td>
   </tr>
 </table>

@@ -21,6 +21,7 @@ class Location {
 	var $_addr2Error = 0;
 	var $_createDt = "";
 	var $_lastChangeDt = "";
+	var $_staffid;
 	var $_lastChangeUserid = "";
 	var $_locationid = "";
 	var $_pincode = "";
@@ -71,6 +72,9 @@ class Location {
 	}
 	function getAddress2Error() {
 		return $this->__addr2Error;
+	}
+	function getStaffid(){
+		return $this->_staffid;
 	}
 	function getCreateDt() {
 		return $this->_createDt;
@@ -132,6 +136,9 @@ class Location {
 	}
 	function setLastChangeUserid($value) {
 		$this->_lastChangeUserid = trim($value);
+	}
+	function setStaffid($staffid){
+		$this->_staffid = trim($staffid);
 	}
 	function setLocationid($value) {
 		$this->_locationid = trim($value);

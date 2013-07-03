@@ -25,6 +25,10 @@
   require_once("../shared/get_form_vars.php");
   require_once('../classes/DmQuery.php');
   require_once("../classes/Localize.php");
+  
+  require_once("../classes/LocationQuery.php");
+  require_once("../classes/Location.php");
+  
   $loc = new Localize(OBIB_LOCALE,$tab);
 
   #****************************************************************************
@@ -70,6 +74,27 @@
       <?php printInputText("copyDesc",40,40,$postVars,$pageErrors); ?>
     </td>
   </tr>
+    <tr>
+    <td nowrap="true" class="primary" valign="top">
+      <?php echo $loc->getText("biblioCopyLocation"); ?>:
+    </td>
+    <td valign="top" class="primary">
+<?php 
+  $locQ = new LocationQuery();
+  $locQ->connect();
+  $locations = $locQ->getLocations();
+  $locQ->close();
+  echo "<select name=\"location\"";
+  echo ">\n";
+  foreach ($locations as $location) {
+    echo "<option value=\"".H($location->getLocationid())."\"";
+    echo ">".H($location->getAddressOne()." - ". $location->getAddressTwo())."</option>\n";
+  }
+  echo "</select>\n";
+?>
+    </td>
+  </tr>
+  
 <?php
   foreach ($customFields as $name => $title) {
     echo '<tr><td nowrap="true" class="primary" valign="top">'.H($title).':</td>';

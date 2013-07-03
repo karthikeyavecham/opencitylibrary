@@ -38,10 +38,9 @@
   $_POST["location"] = $location->getAddressOne();
   $location->setAddressTwo($_POST["address"]);
   $_POST["address"] = $location->getAddressTwo();
-  $location->setLastChangeUserid($_POST["userid"]);
-  $_POST["userid"] = $location->getLastChangeUserid();
-  $location->setLastName($_POST["lastName"]);
-  $_POST["lastName"] = $location->getLastName();
+  $location->setLastChangeUserid($_SESSION["userid"]);
+  $location->setStaffid($_POST["staffid"]);
+  $_POST["staffid"] = $location->getStaffid();
   $location->setCity($_POST["city"]);
   $_POST["city"] = $location->getCity();
   $location->setState($_POST["state"]);
@@ -57,6 +56,7 @@
   #**************************************************************************
   #*  Update library Location
   #**************************************************************************
+  $locationQ = new LocationQuery();
   $locationQ->update($location);
   $locationQ->close();
 
@@ -67,6 +67,6 @@
   unset($_SESSION["pageErrors"]);
 
   $msg = $loc->getText("locEditSuccess");
-  header("Location: ../circ/loc_view.php?mbrid=".U($location->getLocationid())."&reset=Y&msg=".U($msg));
+  header("Location: ../circ/loc_view.php?locationid=".U($location->getLocationid())."&reset=Y&msg=".U($msg));
   exit();
 ?>

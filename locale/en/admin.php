@@ -43,6 +43,17 @@ $trans["adminDelete"]              = "\$text = 'Delete';";
 $trans["adminUpdate"]              = "\$text = 'Update';";
 $trans["adminFootnote"]            = "\$text = 'Fields marked with %symbol% are required.';";
 
+#*********************************************************************************
+#*  Common translation text shared among page adminBulkUpload_list.php
+#*********************************************************************************
+$trans["adminBulkUpload_list"]  = "\$text = 'BulkUpload';";
+$trans["adminBulkUpload_list_Bulk_upload_of_new_bibliographies"] = "\$text = 'Bulk upload of new bibliographies';";
+$trans["adminBulkUpload_list_date"] ="\$text ='Date:';";
+$trans["adminBulkUpload_list_file"] ="\$text =' Excel file:';";
+$trans["adminBulkUpload_list_format_of_file_to_be_uploaded"] ="\$text ='Format of file to be uploaded:';";
+$trans["adminBulkUpload_succesful"] ="\$text ='Uploaded Successfully:';";
+
+
 #****************************************************************************
 #*  Translation text for page index.php
 #****************************************************************************
@@ -199,11 +210,10 @@ $trans["admin_settingsHTMLTagLangAttr"]                 = "\$text = 'HTML Tag La
 #****************************************************************************
 #*  Translation text for all staff pages
 #****************************************************************************
-$trans["adminStaff_Staffmember"]                 = "\$text = 'Staff member,';";
-$trans["adminStaff_Return"]                 = "\$text = 'return to staff list';";
-$trans["adminStaff_Yes"]                 = "\$text = 'Yes';";
+$trans["adminStaff_Staffmember"]        = "\$text = 'Staff member,';";
+$trans["adminStaff_Return"]             = "\$text = 'return to staff list';";
+$trans["adminStaff_Yes"]                = "\$text = 'Yes';";
 $trans["adminStaff_No"]                 = "\$text = 'No';";
-
 
 #****************************************************************************
 #*  Translation text for page staff_del.php
@@ -226,6 +236,8 @@ $trans["adminStaff_editUpdated"]                 = "\$text = ', has been updated
 $trans["adminStaff_edit_formHeader"]                 = "\$text = 'Edit Staff Member Information:';";
 $trans["adminStaff_edit_formLastname"]                 = "\$text = 'Last Name:';";
 $trans["adminStaff_edit_formFirstname"]                 = "\$text = 'First Name:';";
+$trans["adminStaff_edit_formEmail"]                 = "\$text = 'Email:';";
+$trans["adminStaff_edit_formContactnumber"]         = "\$text = 'Contact Number:';";
 $trans["adminStaff_edit_formLogin"]                 = "\$text = 'Login Username:';";
 $trans["adminStaff_edit_formAuth"]                 = "\$text = 'Authorization:';";
 $trans["adminStaff_edit_formCirc"]                 = "\$text = 'Circ';";

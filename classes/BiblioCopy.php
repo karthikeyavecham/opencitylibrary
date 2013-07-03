@@ -27,7 +27,8 @@ class BiblioCopy {
   var $_dueBackDt = "";
   var $_daysLate = "";
   var $_mbrid = "";
-  var $_loc;
+//  var $_loc;
+  var $_locationid;
   var $_renewalCount = "";
   var $_custom = array();
 
@@ -77,6 +78,9 @@ class BiblioCopy {
   function getCreateDt() {
     return $this->_createDt;
   }
+  function getLocationid(){
+  	return $this->_locationid;
+  }
   function getCopyDesc() {
     return $this->_copyDesc;
   }
@@ -120,6 +124,9 @@ class BiblioCopy {
   }
   function setCreateDt($value) {
     $this->_createDt = trim($value);
+  }
+  function setLocationid($value){
+  	$this->_locationid = trim($value);
   }
   function setCopyDesc($value) {
     $this->_copyDesc = trim($value);

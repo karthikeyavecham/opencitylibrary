@@ -29,6 +29,8 @@
   require_once("../classes/Biblio.php");
   require_once("../classes/BiblioQuery.php");
   require_once("../classes/BiblioCopy.php");
+  require_once("../classes/Location.php");
+  require_once("../classes/LocationQuery.php");
   require_once("../classes/BiblioCopyQuery.php");
   require_once("../classes/DmQuery.php");
   require_once("../classes/UsmarcTagDm.php");
@@ -218,6 +220,7 @@
 
   $copyQ = new BiblioCopyQuery();
   $copyQ->connect();
+  
   if ($copyQ->errorOccurred()) {
     $copyQ->close();
     displayErrorPage($copyQ);
@@ -226,6 +229,7 @@
     $copyQ->close();
     displayErrorPage($copyQ);
   }
+  
 ?>
 
 <h1><?php echo $loc->getText("biblioViewTble2Hdr"); ?>:</h1>
@@ -251,6 +255,10 @@
     <th align="left" nowrap="yes">
       <?php echo $loc->getText("biblioViewTble2Col5"); ?>
     </th>
+    <th align="left" nowrap="yes">
+      <?php echo $loc->getText("biblioViewTble2Col6"); ?>
+    </th>
+    
   </tr>
   <?php
     if ($copyQ->getRowCount() == 0) { ?>
@@ -261,7 +269,16 @@
       </tr>      
     <?php } else {
       $row_class = "primary";
+      $locQ=new LocationQuery();
+      $locQ->connect();
+      
       while ($copy = $copyQ->fetchCopy()) {
+
+		if($copy->getLocationid()==0)
+			$location="Not assigned";
+		else
+			$location=$locQ->getForBiblioCopy($copy->getLocationid());
+		
   ?>
     <tr>
       <?php if ($tab == "cataloging") { ?>
@@ -287,6 +304,11 @@
       <td valign="top" class="<?php echo H($row_class);?>">
         <?php echo H($copy->getDueBackDt()); ?>
       </td>
+
+      <td valign="top" class="<?php echo H($row_class);?>">
+       <?php echo H($location); ?>
+     </td>
+
     </tr>      
   <?php
         # swap row color
@@ -297,6 +319,8 @@
         }
       }
       $copyQ->close();
+      $locQ->close();
+     
     } ?>
 </table>
 

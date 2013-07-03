@@ -23,6 +23,8 @@ class Staff {
   var $_lastName = "";
   var $_lastNameError = "";
   var $_firstName = "";
+  var $_email="";
+  var $_contactnumber="";
   var $_username = "";
   var $_usernameError = "";
   var $_circAuth = false;
@@ -144,6 +146,21 @@ class Staff {
    */
   function getFirstName() {
     return $this->_firstName;
+  }
+  
+  function getEmail(){
+  	return $this->_email;
+  }
+  function getContactNumber(){
+  	return $this->_contactnumber;
+  }
+  
+  function setEmail($email){
+  	$this->_email = trim($email);
+  }
+  
+  function setContactNumber($contactnumber){
+  	$this->_contactnumber = trim($contactnumber);
   }
   /****************************************************************************
    * @param string $firstName first name of staff member

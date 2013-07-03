@@ -35,7 +35,13 @@ class LocationQuery extends Query {
   function getPageCount() {
     return $this->_pageCount;
   }
-
+  /* * Used to select the distinct locations from the database
+   * *
+   * */
+	function getLocations(){
+		$sql = $this->mkSQL("select locationid, loc_address_one, loc_address_two from biblio_location ");
+		return array_map(array($this, '_mkObj'), $this->exec($sql));
+	}
   /****************************************************************************
    * Executes a query
    * @param string $type one of the global constants
@@ -99,6 +105,18 @@ class LocationQuery extends Query {
     }
     return $this->_mkObj($rows[0]);
   }
+
+  /*Used to get the location of a particular book given the location id*/
+  function getForBiblioCopy($locationid) {
+  	$sql = $this->mkSQL("select location.* from biblio_location location"
+  			. " where locationid=%N ", $locationid);
+  	$rows = $this->exec($sql);
+  	if (count($rows) == 0) {
+  		return null;
+  	}
+  	$location= $this->_mkObj($rows[0]);
+  	return $location->getAddressOne()."-".$location->getAddressTwo();
+  }
   
   /****************************************************************************
    * Fetches a row from the query result and populates the Location object.
@@ -123,6 +141,7 @@ class LocationQuery extends Query {
 	$location->setAddressOne($array["loc_address_one"]);
 	$location->setAddressTwo($array["loc_address_two"]);
     $location->setLastChangeDt($array["last_change_dt"]);
+    $location->setStaffid($array["staffid"]);
     $location->setLastChangeUserid($array["last_change_userid"]);
     if (isset($array["username"])) {
       $location->setLastChangeUsername($array["username"]);
@@ -147,11 +166,11 @@ class LocationQuery extends Query {
   function insert($location) {
     $sql = $this->mkSQL("insert into biblio_location "
                         . "(locationid, create_dt, last_change_dt, "
-                        . " last_change_userid, loc_address_one, loc_address_two, "
+                        . " last_change_userid, staffid, loc_address_one, loc_address_two, "
                         . " loc_city, loc_state, loc_pincode,loc_latitude, loc_longitude) "
-                        . "values (null, sysdate(), sysdate(), %N, "
+                        . "values (null, sysdate(), sysdate(), %N, %N ,"
                         . " %Q, %Q, %Q, %Q, %Q, %Q, %Q) ",
-                        $location->getLastChangeUserid(),
+                        $location->getLastChangeUserid(), $location->getStaffid(),
                         $location->getAddressOne(), $location->getAddressTwo(),
                         $location->getCity(),
                         $location->getState(), $location->getPincode(),$location->getLatitude(), $location->getLongitude());
@@ -170,13 +189,13 @@ class LocationQuery extends Query {
    */
   function update($location) {
     $sql = $this->mkSQL("update biblio_location set "
-                        . " last_change_dt = sysdate(), last_change_userid=%N, "
+                        . " last_change_dt = sysdate(), last_change_userid=%N, staffid=%N ,"
                         . " loc_address_one=%Q,  loc_address_two=%Q, "
                         . " loc_city=%Q, loc_state=%Q, "
-                        . " loc_pincode=%Q "
+                        . " loc_pincode=%Q, "
     					. " loc_latitude=%Q, loc_longitude=%Q"
-                        . "where locationid=%N",
-                        $location->getLastChangeUserid(), 
+                        . " where locationid=%N",
+                        $location->getLastChangeUserid(), $location->getStaffid(),
                         $location->getAddressOne(), $location->getAddressTwo(),
                         $location->getCity(),
                         $location->getState(), $location->getPincode(),$location->getLatitude(), $location->getLongitude(),

@@ -4,15 +4,30 @@
  */
 
   require_once("../functions/inputFuncs.php");
-  $fields = array(
-    "locFldsAddr2" => inputField('text', "location", $location->getAddressTwo()),
-    "locFldsAddr1" => inputField('text', "locAddress", $location->getAddressOne()),
-    "locFldsCity" => inputField('text', "locCity", $location->getCity()),
-    "locFldsPincode" => inputField('text', "locPinCode", $location->getPincode()),
-    "locFldsState" => inputField('textarea', "locState", $location->getState()),
-  );
+  require_once("../classes/Staff.php");
+  require_once("../classes/StaffQuery.php");
   
+  $staffQ = new StaffQuery();
+  $staffQ->connect();
+  $all_staff=$staffQ->getAllStaff();
+  $staffnames=$staffQ->getAssoc($all_staff);
+  $staffQ->close();
+  
+    
+  $fields = array(
+    "locFldsAddr1" => inputField('text', "location", $location->getAddressOne()),
+    "locFldsAddr2" => inputField('text', "address", $location->getAddressTwo()),
+  	"locstaffid" =>inputField('select', 'staffid', $location->getStaffid(),NULL,$staffnames),	
+    "locFldsCity" => inputField('text', "city", $location->getCity()),  		
+    "locFldsPincode" => inputField('text', "pincode", $location->getPincode()),
+    "locFldsState" => inputField('text', "state", $location->getState()),
+  	"locFldsLatitude" => inputField('text', "latitude", $location->getLatitude()),
+  	"locFldsLongitude" => inputField('text', "longitude", $location->getLongitude()),
+  		
+  );
+
 ?>
+
 
 <table class="primary">
   <tr>

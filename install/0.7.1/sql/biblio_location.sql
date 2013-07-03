@@ -2,6 +2,7 @@ drop table if exists %prfx%biblio_location;
 create table %prfx%biblio_location (
   locationid integer auto_increment not null
   ,userid integer not null
+  ,staffid integer not null
   ,create_dt datetime not null
   ,last_change_dt datetime not null
   ,last_change_userid integer not null

@@ -60,6 +60,75 @@ class StaffQuery extends Query {
     return $this->_query($sql, "Error suspending staff member.");
   }
 
+  /**
+   * Function to get the first name and last name for the given staff id
+   * 
+   * **/
+  function getFirstNameLastName($staffid)
+  {
+  	$sql = $this->mkSQL("select * from staff where userid= %N ", $staffid);
+ 	$this->_exec($sql);
+  	$array = $this->_conn->fetchRow();
+  	$staff=$this->_mkObj($array);
+  	return $staff->getFirstName()." - ".$staff->getLastName();
+  }
+  
+  /* *
+   * * Used to return only the staff id's
+   * */
+  function getAllStaff(){
+  	$sql = $this->mkSQL("select * from staff ");
+  	return array_map(array($this, '_mkObj'), $this->exec($sql));
+  }
+  
+  function getAssoc($all_staff) {
+  	$assoc = array();
+  	foreach ($all_staff as $staff) {
+  		$assoc[$staff->getUserid()] = $staff->getFirstName()."-".$staff->getLastName();
+  	}
+  	return $assoc;
+  }
+  function _mkObj($array) {
+  	$staff = new Staff();
+  	$staff->setUserid($array["userid"]);
+  	$staff->setLastName($array["last_name"]);
+  	$staff->setFirstName($array["first_name"]);
+  	$staff->setUsername($array["username"]);
+  	$staff->setEmail($array["email"]);
+  	$staff->setContactNumber($array["contact_number"]);
+  	if ($array["circ_flg"] == "Y") {
+  		$staff->setCircAuth(true);
+  	} else {
+  		$staff->setCircAuth(false);
+  	}
+  	if ($array["circ_mbr_flg"] == "Y") {
+  		$staff->setCircMbrAuth(TRUE);
+  	} else {
+  		$staff->setCircMbrAuth(FALSE);
+  	}
+  	if ($array["catalog_flg"] == "Y") {
+  		$staff->setCatalogAuth(true);
+  	} else {
+  		$staff->setCatalogAuth(false);
+  	}
+  	if ($array["admin_flg"] == "Y") {
+  		$staff->setAdminAuth(true);
+  	} else {
+  		$staff->setAdminAuth(false);
+  	}
+  	if ($array["reports_flg"] == "Y") {
+  		$staff->setReportsAuth(TRUE);
+  	} else {
+  		$staff->setReportsAuth(FALSE);
+  	}
+  	if ($array["suspended_flg"] == "Y") {
+  		$staff->setSuspended(true);
+  	} else {
+  		$staff->setSuspended(false);
+  	}
+  	return $staff;
+  }
+  
   /****************************************************************************
    * Fetches a row from the query result and populates the Staff object.
    * @return Staff returns staff member or false if no more staff members to fetch
@@ -71,42 +140,7 @@ class StaffQuery extends Query {
     if ($array == false) {
       return false;
     }
-    $staff = new Staff();
-    $staff->setUserid($array["userid"]);
-    $staff->setLastName($array["last_name"]);
-    $staff->setFirstName($array["first_name"]);
-    $staff->setUsername($array["username"]);
-    if ($array["circ_flg"] == "Y") {
-      $staff->setCircAuth(true);
-    } else {
-      $staff->setCircAuth(false);
-    }
-    if ($array["circ_mbr_flg"] == "Y") {
-      $staff->setCircMbrAuth(TRUE);
-    } else {
-      $staff->setCircMbrAuth(FALSE);
-    }
-    if ($array["catalog_flg"] == "Y") {
-      $staff->setCatalogAuth(true);
-    } else {
-      $staff->setCatalogAuth(false);
-    }
-    if ($array["admin_flg"] == "Y") {
-      $staff->setAdminAuth(true);
-    } else {
-      $staff->setAdminAuth(false);
-    }
-    if ($array["reports_flg"] == "Y") {
-      $staff->setReportsAuth(TRUE);
-    } else {
-      $staff->setReportsAuth(FALSE);
-    }
-    if ($array["suspended_flg"] == "Y") {
-      $staff->setSuspended(true);
-    } else {
-      $staff->setSuspended(false);
-    }
-    return $staff;
+	return $this->_mkObj($array);
   }
 
   /****************************************************************************
@@ -146,9 +180,9 @@ class StaffQuery extends Query {
       return false;
     }
     $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), "
-                        . "%N, %Q, md5(lower(%Q)), %Q, ",
+                        . "%N, %Q, md5(lower(%Q)), %Q, %Q, %Q, ",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $staff->getPwd(), $staff->getLastName());
+                        $staff->getPwd(), $staff->getEmail() , $staff->getContactNumber(), $staff->getLastName());
     if ($staff->getFirstName() == "") {
       $sql .= "null, ";
     } else {
@@ -183,9 +217,9 @@ class StaffQuery extends Query {
     }
 
     $sql = $this->mkSQL("update staff set last_change_dt = sysdate(), "
-                        . "last_change_userid=%N, username=%Q, last_name=%Q, ",
+                        . "last_change_userid=%N, username=%Q, last_name=%Q, email=%Q, contact_number=%Q,",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $staff->getLastName());
+                        $staff->getLastName(), $staff->getEmail(), $staff->getContactNumber());
     if ($staff->getFirstName() == "") {
       $sql .= "first_name=null, ";
     } else {

@@ -32,10 +32,13 @@
   $_POST["location"] = $location->getAddressOne();
   $location->setAddressTwo($_POST["address"]);
   $_POST["address"] = $location->getAddressTwo();
+  $location->setLastChangeUserid($_SESSION["userid"]);
   $location->setCity($_POST["city"]);
   $_POST["city"] = $location->getCity();
   $location->setState($_POST["state"]);
   $_POST["state"] = $location->getState();
+  $location->setStaffid($_POST["staffid"]);
+  $_POST["staffid"] = $location->getStaffid();
   $location->setPincode($_POST["pincode"]);
   $_POST["pincode"] = $location->getPincode();
   $location->setLatitude($_POST["latitude"]);

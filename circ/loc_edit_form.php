@@ -36,5 +36,5 @@
 
 <form name="editLocform" method="POST" action="../circ/loc_edit.php">
 <input type="hidden" name="locationid" value="<?php echo H($locationid);?>">
-<?php include("../circ/loc_edit_fields.php"); ?>
+<?php include("../circ/loc_fields.php"); ?>
 <?php include("../shared/footer.php"); ?>

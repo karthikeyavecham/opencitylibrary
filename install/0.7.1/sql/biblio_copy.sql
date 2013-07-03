@@ -9,7 +9,7 @@ create table %prfx%biblio_copy (
   ,status_begin_dt datetime not null
   ,due_back_dt date null
   ,mbrid integer null
-  ,locationid integer not null
+  ,locationid integer
   ,renewal_count tinyint unsigned not null
   ,index barcode_index (barcode_nmbr)
   ,index mbr_index (mbrid)

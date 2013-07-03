@@ -226,6 +226,15 @@ class BiblioSearchQuery extends Query {
     }
     return $criteria;
   }
+  
+  function checkoutLocationQuery($locationid){
+  	$sql=$this->mkSQL("select * from biblio_copy where locationid= %N ",$locationid);
+  	$this->_exec($sql);
+  	$this->_rowCount = $this->_conn->numRows();
+  	if($this->_rowCount >0)
+  		return false;
+  	return true;
+  }
 
   function _getLike(&$cols,$word) {
     $prefix = "";

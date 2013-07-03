@@ -58,6 +58,12 @@
  <a href="../admin/collections_list.php" class="alt1"><?php echo $navLoc->getText("adminCollections");?></a><br>
 <?php } ?>
 
+<?php if ($nav == "BulkUpload") { ?>
+ &raquo; <?php echo $navLoc->getText("bulkupload");?><br>
+<?php } else { ?>
+ <a href="../admin/adminBulkUpload_list.php" class="alt1"><?php echo $navLoc->getText("adminBulkUpload");?></a><br>
+<?php } ?>
+
 <?php if ($nav == "checkout_privs") { ?>
  &raquo; <?php echo $navLoc->getText("Checkout Privs");?><br>
 <?php } else { ?>
