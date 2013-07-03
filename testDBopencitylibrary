@@ -1,0 +1,6 @@
+drop database opencitylibrary;
+
+create database opencitylibrary;
+
+grant all privileges on opencitylibrary.* to opencitylibrary@localhost
+identified by 'opencitylibrary';
