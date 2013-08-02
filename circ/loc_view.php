@@ -5,7 +5,7 @@
  
   require_once("../shared/common.php");
   $tab = "circulation";
-  $nav = "view";
+  $nav = "locview";
   $helpPage = "memberView";
 
   require_once("../functions/inputFuncs.php");

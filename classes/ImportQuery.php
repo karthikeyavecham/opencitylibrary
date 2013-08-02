@@ -28,9 +28,16 @@ function insertBiblio($data) {
 	$sql .= " VALUES ('" . date("Y-m-d H:i:s") . "','" . date("Y-m-d H:i:s")  . "','" . 995 .  "','"  . $data[4] .  "','" .  $data[6] .  "','" . $data[1] .  "','" . $data[2] . "')";
    	$qShowStatusResult = $this->_act($sql);
 	if ($qShowStatusResult==true)
-  		return $this->getInsertID();
-	else
-		return 0;	
+	{
+		$insertid=$this->getInsertID();
+		$sql="INSERT INTO biblio_field(bibid,fieldid,tag,ind1_cd,ind2_cd,subfield_cd,field_data)";
+		$sql.=" VALUES ('".$insertid."','"." 1', '260', 'N', 'N', 'b', '".$data[9]."')";
+		$qShowStatusResult=$this->_act($sql);
+		if($qShowStatusResult==true)
+			return $insertid;
+		return 0;
+	}
+	return 0;
 }
 /**
  * Inserts data into the biblio table

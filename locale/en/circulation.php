@@ -50,8 +50,8 @@ $trans["indexHeading"]            = "\$text='Circulation';";
 $trans["indexCardHdr"]            = "\$text='Search Member by Card Number:';";
 $trans["indexCard"]               = "\$text='Card Number:';";
 $trans["indexSearch"]             = "\$text='Search';";
-$trans["indexNameHdr"]            = "\$text='Search Member by Last Name:';";
-$trans["indexName"]               = "\$text='Last name start with:';";
+$trans["indexNameHdr"]            = "\$text='Search Member by First Name:';";
+$trans["indexName"]               = "\$text='First name start with:';";
 
 #****************************************************************************
 #*  Translation text for page mbr_new_form.php, mbr_edit_form.php and mbr_fields.php
@@ -335,7 +335,7 @@ $trans["locDelConfirmWarn"]       = "\$text = 'Location, %name%, has books assoc
 #****************************************************************************
 #*  Translation text for page loc_del.php
 #****************************************************************************
-$trans["locDelSuccess"]           = "\$text='Location, %name%, has been deleted.';";
+$trans["locDelSuccess"]           = "\$text='Location, %name% , has been deleted.';";
 $trans["locDelReturn"]            = "\$text='return to Location Search';";
 
 
