@@ -277,6 +277,9 @@ $trans["locEditForm"]             = "\$text='Edit';";
 $trans["locFldsHeader"]           = "\$text='Location:';";
 $trans["locFldsAddr2"]            = "\$text='Address:';";
 $trans["locFldsAddr1"]            = "\$text='Location (Panjagutta, Uppal, ..etc):';";
+$trans["locFldsDays"]             = "\$text='Library Days:';";
+$trans["locFldsTime"]             = "\$text='Library Timings:';";
+
 $trans["locFldsCity"]             = "\$text='City:';";
 $trans["locFldsState"]         	  = "\$text='State:';";
 $trans["locFldsPincode"]          = "\$text='Pincode:';";
@@ -319,6 +322,8 @@ $trans["locViewAddrTwo"]          = "\$text='Address:';";
 $trans["locViewCity"]             = "\$text='City:';";
 $trans["locViewState"]         	  = "\$text='State:';";
 $trans["locViewPincode"]          = "\$text='Pincode:';";
+$trans["locViewDays"]          	  = "\$text='LibraryDays:';";
+$trans["locViewTime"]             = "\$text='Library Timings:';";
 $trans["locViewDel"]              = "\$text='del';";
 $trans["locStaff"]                = "\$text='Staff:;";
 $trans["locViewLatitude"]         = "\$text='Latitude:';";

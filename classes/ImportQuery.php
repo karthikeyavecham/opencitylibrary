@@ -6,6 +6,7 @@
 require_once("../shared/global_constants.php");
 require_once("../classes/Query.php");
 require_once("../classes/Localize.php");
+require_once("../classes/BiblioCopyQuery.php");
 
 /******************************************************************************
  * Import data access component for library bibliographies
@@ -70,9 +71,10 @@ function alreadyInDB($title) {
  * @return nothing
  */
 function insertBiblioCopy($data, $lastInsertID) {
-	
+	$bibQ=new BiblioCopyQuery();
+	$barcodenumber=$bibQ->getBarcodeNumber();
 	$sql  = "INSERT INTO biblio_copy (create_dt, bibid, barcode_nmbr, status_cd, status_begin_dt, copy_desc , locationid) VALUES ( ";
-	$sql .= "'" . date("Y-m-d H:i:s") . "','" . $lastInsertID .  "','" . $data[0] . "','" . $data[3] . "','" . date("Y-m-d H:i:s") . "','";
+	$sql .= "'" . date("Y-m-d H:i:s") . "','" . $lastInsertID .  "','" . $barcodenumber . "','" . $data[3] . "','" . date("Y-m-d H:i:s") . "','";
 	$sql .= $data[7]. "','".$data[8]."' ) " ;
   	$r = $this->_act($sql);
  	return $r;

@@ -207,6 +207,22 @@ class BiblioCopyQuery extends Query {
     return $nmbr+1;
   }
 
+  
+  
+  /****************************************************************************
+   * Returns the next barcode number available in the biblio_copy barcode number field for a given biblio
+  * @access private
+  ****************************************************************************
+  */
+  function getBarcodeNumber() {
+  	$sql = $this->mkSQL("SELECT count(*) as barcode FROM biblio_copy ");
+  	$result=$this->exec($sql);
+  	$barcode=$result[0]['barcode'];
+  	if((isset($barcode)))
+  		return $barcode+1;
+  	return 1;
+  }
+  
   /****************************************************************************
    * Inserts a new bibliography copy into the biblio_copy table.
    * @param BiblioCopy $copy bibliography copy to insert

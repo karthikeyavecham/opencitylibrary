@@ -11,6 +11,8 @@ create table %prfx%biblio_location (
   ,loc_pincode char(6) null
   ,loc_state varchar(30) null
   ,loc_city   varchar(40) null
+  ,loc_days varchar(200) null
+  ,loc_time varchar(200) null
   ,loc_latitude decimal(10,6) null
   ,loc_longitude decimal(10,6) null
   ,index location_index (loc_address_two)
