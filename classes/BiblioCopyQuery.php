@@ -28,7 +28,12 @@ class BiblioCopyQuery extends Query {
     return $this->_rowCount;
   }
 
-
+	function getBooksList($locid)
+	{
+		$sql = $this->mkSQL("SELECT a.title, b.barcode_nmbr, a.author FROM biblio a, biblio_copy b "
+			." WHERE a.bibid = b.bibid AND b.locationid = %N",$locid);
+		return $this->exec($sql);
+	}
   /****************************************************************************
    * Executes a query to select ONLY ONE COPY
    * @param string $bibid bibid of bibliography copy to select

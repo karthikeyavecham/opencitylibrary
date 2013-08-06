@@ -35,6 +35,19 @@ class LocationQuery extends Query {
   function getPageCount() {
     return $this->_pageCount;
   }
+  
+  	function getLocations(){
+		$sql = $this->mkSQL("select locationid, loc_address_one, loc_address_two from biblio_location ");
+		return array_map(array($this, '_mkObj'), $this->exec($sql));
+	}
+	function getAssoc($allLocations)
+	{
+		$assoc = array();
+  		foreach ($allLocations as $location) {
+  			$assoc[$location->getLocationid()] = $location->getAddressOne()."-".$location->getAddressTwo();
+  		}
+  		return $assoc;
+	}
   /* * Used to select the distinct locations from the database
    * *
    * */
