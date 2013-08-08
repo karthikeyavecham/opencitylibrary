@@ -36,6 +36,15 @@ class MemberQuery extends Query {
 		return $this->_pageCount;
 	}
 
+	
+	/* *
+	 * *  Method to return list of members who has checkout the books from a location.
+	 * */
+	function getMembersList($locationid)
+	{
+		$sql = $this->mkSQL("select * from member ");
+		return $this->exec($sql);
+	}
 	/****************************************************************************
 	 * Executes a query
 	* @param string $type one of the global constants

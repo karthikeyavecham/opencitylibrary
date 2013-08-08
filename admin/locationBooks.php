@@ -22,11 +22,6 @@
   $headerWording = $loc->getText("BooksForLocation");
   $location = new Location();
 ?>
-<<<<<<< HEAD
 <form name="bookslocform" method="POST" action="../admin/books_loc.php">
 <?php include("../admin/loc_books_fields.php"); ?>
-=======
-<form name="newlocform" method="POST" action="../admin/loc_new.php">
-<?php include("../circ/loc_fields.php"); ?>
->>>>>>> ce5c8022f31216e5a120f6f5d40bfcc43ba4ee37
 <?php include("../shared/footer.php"); ?>

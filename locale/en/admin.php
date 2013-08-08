@@ -43,6 +43,9 @@ $trans["adminDelete"]              = "\$text = 'Delete';";
 $trans["adminUpdate"]              = "\$text = 'Update';";
 $trans["adminFootnote"]            = "\$text = 'Fields marked with %symbol% are required.';";
 $trans["location"]                 = "\$text = 'Location';";
+$trans["locationOfBooks"] 		   ="\$text ='Click Here to download the List Of Books';";
+$trans["membersOfLocation"] 	   ="\$text ='Click Here to download the Members of the Location';";
+
 
 #*********************************************************************************
 #*  Common translation text shared among page adminBulkUpload_list.php

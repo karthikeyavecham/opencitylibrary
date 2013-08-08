@@ -31,15 +31,20 @@
   $bibCopyQ ->connect();
   $booksList=$bibCopyQ ->getBooksList($location);
 
-	$my_file = 'file.txt';
+	$my_file = '../layouts/default/LocationBooksFile.csv';
 	$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 	foreach($booksList as $book)
 	{
-		$data .=$book['barcode_nmbr'].",".$book['title'].",".$book['author']. "\n";
+		$line=array($book['barcode_nmbr'],$book['title'],$book['author']);
+		fputcsv($handle, $line);
 	}
-	fwrite($handle, $data);
 
-
+		header('Content-Description: File Transfer'); 
+        header('Content-Type: application/octet-stream'); 
+        header('Content-Length: ' . filesize($my_file)); 
+        header('Content-Disposition: attachment; filename="' . 'LocationOfBooks.csv' . '"'); 
+        readfile($my_file);
+	
 /**
 * 
 * Retrieval and downloading of books need to be done here
@@ -52,6 +57,6 @@
   unset($_SESSION["pageErrors"]);
 
 //  $msg = $loc->getText("locNewSuccess");
-  header("Location: ../admin/index.php?locationid=".U($locationid));
+ // header("Location: ../admin/books_location_result.php");
   exit();
 ?>

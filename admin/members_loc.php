@@ -10,7 +10,7 @@
   $restrictInDemo = true;
   require_once("../shared/logincheck.php");
   require_once("../classes/Location.php");
-  require_once("../classes/BiblioCopyQuery.php");
+  require_once("../classes/MemberQuery.php");
   require_once("../functions/errorFuncs.php");
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
@@ -27,19 +27,24 @@
   #*  Validate data
   #****************************************************************************
   $location = $_POST["locationid"];
-  $bibCopyQ = new BiblioCopyQuery();
-  $bibCopyQ ->connect();
-  $booksList=$bibCopyQ ->getBooksList($location);
+  $memQ = new MemberQuery();
+  $memQ ->connect();
+  $members=$memQ ->getMembersList($location);
 
-	$my_file = 'file.txt';
+	$my_file = '../layouts/default/MembersLocationFile.csv';
 	$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
-	foreach($booksList as $book)
+	foreach($members as $member)
 	{
-		$data .=$book['barcode_nmbr']." , ".$book['title']." , ".$book['author']. "\n";
+		$line=array($member['first_name'],$member['last_name'],$member['barcode_nmbr'],$member['work_phone'],$member['email']);
+		fputcsv($handle, $line);
 	}
-	fwrite($handle, $data);
 
-
+		header('Content-Description: File Transfer'); 
+        header('Content-Type: application/octet-stream'); 
+        header('Content-Length: ' . filesize($my_file)); 
+        header('Content-Disposition: attachment; filename="' . 'MembersLocationFile.csv' . '"'); 
+        readfile($my_file);
+  
 /**
 * 
 * Retrieval and downloading of books need to be done here
@@ -52,6 +57,6 @@
   unset($_SESSION["pageErrors"]);
 
   //$msg = $loc->getText("locNewSuccess");
-  header("Location: ../admin/index.php?locationid=".U($locationid));
+ // header("Location: ../admin/index.php");
   exit();
 ?>
