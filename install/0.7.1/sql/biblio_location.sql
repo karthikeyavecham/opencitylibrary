@@ -18,5 +18,5 @@ create table %prfx%biblio_location (
   ,index location_index (loc_address_two)
   ,primary key(locationid)
   )
-  ENGINE=MyISAM
+  ENGINE=InnoDB
 ;

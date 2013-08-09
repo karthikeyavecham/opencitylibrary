@@ -32,7 +32,7 @@ function insertBiblio($data) {
 	{
 		$insertid=$this->getInsertID();
 		$sql="INSERT INTO biblio_field(bibid,fieldid,tag,ind1_cd,ind2_cd,subfield_cd,field_data)";
-		$sql.=" VALUES ('".$insertid."','"." 1', '260', 'N', 'N', 'b', '".$data[9]."')";
+		$sql.=" VALUES ('".$insertid."','"."  ', '260', 'N', 'N', 'b', '".$data[9]."')";
 		$qShowStatusResult=$this->_act($sql);
 		if($qShowStatusResult==true)
 			return $insertid;

@@ -7,7 +7,7 @@ create table %prfx%biblio_field (
   ,ind2_cd char(1) null
   ,subfield_cd char(1) not null
   ,field_data text null
-  ,primary key(bibid,fieldid)
+  ,primary key(fieldid)
   )
-  ENGINE=MyISAM
+  ENGINE=InnoDB
 ;

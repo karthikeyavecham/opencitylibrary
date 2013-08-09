@@ -8,7 +8,7 @@
  *
  *                  CHANGE HISTORY
  *     #C3 - Its a feature for bulkupload of titles and copies of an items in admin section 
- *     @author Kiran Kumar Reddy and Saiteja Bogade
+ *     @author Karthikeya, Kiran Kumar Reddy and Saiteja Bogade
  *
  ******************************************************************************
  */

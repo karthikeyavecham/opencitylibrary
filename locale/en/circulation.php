@@ -297,7 +297,7 @@ $trans["locindexSearch"]          = "\$text='Search location by place';";
 $trans["locindexplace"]           = "\$text='Address:';";
 $trans["locsearchCity"]        	  = "\$text='City:';";
 $trans["locsearchState"]          = "\$text='State:';";
-$trans["locstaffid"]          	  = "\$text='StaffId:';";
+$trans["locstaffid"]          	  = "\$text='Staff Name:';";
 $trans["locsearchPincode"]        = "\$text='Pincode:';";
 $trans["locFldsLatitude"]         = "\$text='Latitude:';";
 $trans["locFldsLongitude"]        = "\$text='Longitude:';";
