@@ -48,6 +48,7 @@ class LocationQuery extends Query {
   		}
   		return $assoc;
 	}
+	
   /* * Used to select the distinct locations from the database
    * *
    * */
@@ -61,6 +62,18 @@ class LocationQuery extends Query {
 					 from biblio_location where loc_city = (select loc_city from biblio_location where locationid = %N) ", $locationid);
 		return array_map(array($this, '_mkObj'), $this->exec($sql));
 	}
+
+
+// Newely added function on 15-aug-2013	
+	function getStaffOfLocation($locid)
+	{
+	  	$sql = $this->mkSQL("SELECT staffid as staff FROM biblio_location where locationid=%N",$locid);
+	  	$result=$this->exec($sql);
+	  	$staffid=$result[0]['staff'];
+	  	return $staffid;	
+
+	}
+
 	/****************************************************************************
 	 * Executes a query
 	* @param string $type one of the global constants
