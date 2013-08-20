@@ -9,3 +9,4 @@ CREATE TABLE %prfx%usmarc_tag_dm (
   ,PRIMARY KEY  (block_nmbr,tag)
 )  ENGINE=InnoDB
 ;
+
